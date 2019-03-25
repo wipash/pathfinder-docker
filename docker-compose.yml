@@ -1,0 +1,19 @@
+version: '3'
+
+volumes:
+  data:
+
+services:
+  php:
+    image: php:7.3-fpm
+    volumes:
+      - data:/var/www/html
+  web:
+    build:
+      context: ./
+    links:
+      - php
+    ports:
+      - 8080:80
+    volumes:
+      - data:/var/www/html
