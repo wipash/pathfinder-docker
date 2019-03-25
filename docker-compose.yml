@@ -3,20 +3,47 @@ version: '3.3'
 volumes:
   data:
 
+networks:
+  pathfinder:
+
 services:
   php:
     build:
       context: ./
+    networks:
+      - pathfinder
     volumes:
       - data:/var/www/html
       - ./pathfinder-config/environment.ini :/var/www/html/app/environment.ini
 
   web:
     image: nginx:1.15.9-alpine
-    links:
-      - php
+    networks:
+      - pathfinder
     ports:
       - 8080:80
     volumes:
       - data:/var/www/html
       - ./pathfinder-nginx.conf :/etc/nginx/conf.d/default.conf
+
+  mariadb-pathfinder:
+    image: mariadb:10.4
+    networks:
+      - pathfinder
+    command: ['--character-set-server=utf8', '--collation-server=utf8_general_ci']
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: mariadb-pathfinder
+      MYSQL_USER: mariadb-pathfinder
+      MYSQL_PASSWORD: mariadb-pathfinder
+
+  mariadb-eve:
+    image: mariadb:10.4
+    networks:
+      - pathfinder
+    command: ['--character-set-server=utf8', '--collation-server=utf8_general_ci']
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+      MYSQL_DATABASE: mariadb-eve
+      MYSQL_USER: mariadb-eve
+      MYSQL_PASSWORD: mariadb-eve

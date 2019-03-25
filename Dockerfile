@@ -8,7 +8,5 @@ RUN apt-get update &&  apt-get install -y libjpeg62-turbo-dev libpng-dev libzmq3
 
 FROM base
 WORKDIR /var/www/html
-RUN git clone https://github.com/exodus4d/pathfinder.git .
-COPY ./pathfinder-config/environment.ini /var/www/html/app/environment.ini
-RUN composer install
+RUN git clone https://github.com/exodus4d/pathfinder.git . && composer install && rm -f /var/www/html/app/environment.ini && chmod 777 -R /var/www/html
 VOLUME /var/www/html

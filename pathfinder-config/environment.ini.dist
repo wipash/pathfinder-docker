@@ -15,16 +15,16 @@ URL                         =   {{@SCHEME}}://local.pathfinder
 ; level of debug/error stack trace
 DEBUG                       =   3
 ; Pathfinder database
-DB_PF_DNS                   =   mysql:host=localhost;port=3306;dbname=pathfinder
-DB_PF_NAME                  =   pathfinder
-DB_PF_USER                  =   root
-DB_PF_PASS                  =   nopassyet
+DB_PF_DNS                   =   mysql:host=mariadb-pathfinder;port=3306;dbname=
+DB_PF_NAME                  =   mariadb-pathfinder
+DB_PF_USER                  =   mariadb-pathfinder
+DB_PF_PASS                  =   mariadb-pathfinder
 
 ; Universe data (New Eden) cache DB for ESI API respons
-DB_UNIVERSE_DNS             =   mysql:host=localhost;port=3306;dbname=pathfinder
-DB_UNIVERSE_NAME            =   eve_universe
-DB_UNIVERSE_USER            =   root
-DB_UNIVERSE_PASS            =   nopassyet
+DB_UNIVERSE_DNS             =   mysql:host=mariadb-eve;port=3306;dbname=
+DB_UNIVERSE_NAME            =   mariadb-eve
+DB_UNIVERSE_USER            =   mariadb-eve
+DB_UNIVERSE_PASS            =   mariadb-eve
 
 ; CCP SSO (OAuth2) - visit: https://developers.eveonline.com/applications
 CCP_SSO_URL                 =   https://sisilogin.testeveonline.com
