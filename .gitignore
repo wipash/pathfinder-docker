@@ -1,1 +1,2 @@
-environment.ini
+*.code-workspace
+*.ini
