@@ -68,5 +68,5 @@ services:
       MYSQL_DATABASE: mariadb-eve
       MYSQL_USER: mariadb-eve
       MYSQL_PASSWORD: mariadb-eve
-    volume:
+    volumes:
       - eve-db:/var/lib/mysql
