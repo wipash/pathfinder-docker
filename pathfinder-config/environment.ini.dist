@@ -28,8 +28,8 @@ DB_UNIVERSE_PASS            =   mariadb-eve
 
 ; CCP SSO (OAuth2) - visit: https://developers.eveonline.com/applications
 CCP_SSO_URL                 =   https://sisilogin.testeveonline.com
-CCP_SSO_CLIENT_ID           =   nopassyet
-CCP_SSO_SECRET_KEY          =   nopassyet
+CCP_SSO_CLIENT_ID           =
+CCP_SSO_SECRET_KEY          =
 CCP_SSO_DOWNTIME            =   11:00
 
 ; CCP ESI API
@@ -39,14 +39,14 @@ CCP_ESI_SCOPES              =   esi-location.read_online.v1,esi-location.read_lo
 CCP_ESI_SCOPES_ADMIN        =
 
 ; SMTP settings (optional)
-SMTP_HOST                   =   localhost
+SMTP_HOST                   =   mail
 SMTP_PORT                   =   25
 SMTP_SCHEME                 =   TLS
-SMTP_USER                   =   pathfinder
-SMTP_PASS                   =   root
+SMTP_USER                   =
+SMTP_PASS                   =
 
-SMTP_FROM                   =   pathfinder@localhost.com
-SMTP_ERROR                  =   pathfinder@localhost.com
+SMTP_FROM                   =   registration@pathfinder.thefed.xyz
+SMTP_ERROR                  =   admin@pathfinder.thefed.xyz
 
 ; TCP Socket configuration (optional) (advanced)
 ;SOCKET_HOST                 =   127.0.0.1
@@ -58,20 +58,20 @@ SMTP_ERROR                  =   pathfinder@localhost.com
 ; -> e.g. set /pathfinder if your URL looks like https://www.[YOUR_DOMAIN]/pathfinder (subfolder)
 BASE                        =
 ; deployment URL (e.g. https://www.pathfinder-w.space)
-URL                         =   {{@SCHEME}}://www.pathfinder-w.space
+URL                         =   {{@SCHEME}}://pathfinder.thefed.xyz
 ; level of debug/error stack trace
 DEBUG                       =   0
 ; Pathfinder database
-DB_PF_DNS                   =   mysql:host=localhost;port=3306;dbname=
-DB_PF_NAME                  =
-DB_PF_USER                  =
-DB_PF_PASS                  =
+DB_PF_DNS                   =   mysql:host=mariadb-pathfinder;port=3306;dbname=
+DB_PF_NAME                  =   mariadb-pathfinder
+DB_PF_USER                  =   mariadb-pathfinder
+DB_PF_PASS                  =   mariadb-pathfinder
 
 ; Universe data (New Eden) cache DB for ESI API respons
-DB_UNIVERSE_DNS             =   mysql:host=localhost;port=3306;dbname=
-DB_UNIVERSE_NAME            =
-DB_UNIVERSE_USER            =
-DB_UNIVERSE_PASS            =
+DB_UNIVERSE_DNS             =   mysql:host=mariadb-eve;port=3306;dbname=
+DB_UNIVERSE_NAME            =   mariadb-eve
+DB_UNIVERSE_USER            =   mariadb-eve
+DB_UNIVERSE_PASS            =   mariadb-eve
 
 ; EVE-Online CCP Database export
 DB_CCP_DNS                  =   mysql:host=localhost;port=3306;dbname=
@@ -92,14 +92,14 @@ CCP_ESI_SCOPES              =   esi-location.read_online.v1,esi-location.read_lo
 CCP_ESI_SCOPES_ADMIN        =
 
 ; SMTP settings (optional)
-SMTP_HOST                   =   localhost
+SMTP_HOST                   =   mail
 SMTP_PORT                   =   25
 SMTP_SCHEME                 =   TLS
 SMTP_USER                   =
 SMTP_PASS                   =
 
-SMTP_FROM                   =   registration@pathfinder-w.space
-SMTP_ERROR                  =   admin@pathfinder-w.space
+SMTP_FROM                   =   registration@pathfinder.thefed.xyz
+SMTP_ERROR                  =   admin@pathfinder.thefed.xyz
 
 ; TCP Socket configuration (optional) (advanced)
 ;SOCKET_HOST                 =   127.0.0.1
