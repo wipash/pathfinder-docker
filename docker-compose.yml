@@ -1,23 +1,12 @@
 version: '3.3'
 
-volumes:
-  pathfinder-data:
-  pathfinder-db:
-  eve-db:
-
-networks:
-  default:
-    external:
-      name: nginx-proxy
-  pathfinder:
-
 services:
   pathfinder-app:
     build:
       context: ./pathfinder-app
     restart: always
-    networks:
-      - pathfinder
+    expose:
+      - 9000
     volumes:
       - pathfinder-data:/var/www/html
       - ./pathfinder-config/environment.ini:/var/www/html/app/environment.ini
@@ -29,16 +18,15 @@ services:
     build:
       context: ./pathfinder-websockets
     restart: always
-    networks:
-      - pathfinder
+    expose:
+      - 8030
+      - 5555
     volumes:
       - pathfinder-data:/var/www/html
 
   web:
     image: nginx:1.15.9-alpine
     restart: always
-    networks:
-      - pathfinder
     expose:
       - 80
     environment:
@@ -53,17 +41,17 @@ services:
   redis:
     image: bitnami/redis:latest
     restart: always
+    expose:
+      - 6379
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
     command: /run.sh --maxmemory 256mb --maxmemory-policy allkeys-lru
-    networks:
-      - pathfinder
 
   mariadb-pathfinder:
     image: mariadb:10.4
     restart: always
-    networks:
-      - pathfinder
+    expose:
+      - 3306
     command: ['--character-set-server=utf8', '--collation-server=utf8_general_ci']
     environment:
       MYSQL_ROOT_PASSWORD: changeme
@@ -76,8 +64,8 @@ services:
   mariadb-eve:
     image: mariadb:10.4
     restart: always
-    networks:
-      - pathfinder
+    expose:
+      - 3306
     command: ['--character-set-server=utf8', '--collation-server=utf8_general_ci']
     environment:
       MYSQL_ROOT_PASSWORD: changeme
@@ -86,3 +74,13 @@ services:
       MYSQL_PASSWORD: mariadb-eve
     volumes:
       - eve-db:/var/lib/mysql
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
+
+volumes:
+  pathfinder-data:
+  pathfinder-db:
+  eve-db:
