@@ -6,6 +6,9 @@ volumes:
   eve-db:
 
 networks:
+  default:
+    external:
+      name: nginx-proxy
   pathfinder:
 
 services:
