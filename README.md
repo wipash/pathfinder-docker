@@ -24,6 +24,7 @@ docker-compose up -d
 Set up the DB
 ```
 http://yourpathfinderserver.com/setup
+docker exec -i pathfinder-docker_mariadb-eve_1 mysql -umariadb-eve -pmariadb-eve mariadb-eve < eve_universe.sql
 ```
 
 Edit the routes.ini file to disable the setup path
