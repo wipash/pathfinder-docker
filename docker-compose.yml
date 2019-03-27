@@ -9,9 +9,9 @@ networks:
   pathfinder:
 
 services:
-  php:
+  pathfinder-app:
     build:
-      context: ./
+      context: ./pathfinder-app
     restart: always
     networks:
       - pathfinder
@@ -22,6 +22,14 @@ services:
       - ./pathfinder-config/pathfinder.ini:/var/www/html/app/pathfinder.ini
       - ./pathfinder-config/routes.ini:/var/www/html/app/routes.ini
 
+  pathfinder-websockets:
+    build:
+      context: ./pathfinder-websockets
+    restart: always
+    networks:
+      - pathfinder
+    volumes:
+      - pathfinder-data:/var/www/html
 
   web:
     image: nginx:1.15.9-alpine
@@ -32,14 +40,15 @@ services:
       - 8080:80
     volumes:
       - pathfinder-data:/var/www/html
-      - ./pathfinder-config/pathfinder-nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./pathfinder-config/nginx-pathfinder.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./pathfinder-config/nginx.conf:/etc/nginx/nginx.conf:ro
 
   redis:
     image: bitnami/redis:latest
     restart: always
     environment:
       - ALLOW_EMPTY_PASSWORD=yes
-    command: /run.sh --maxmemory 256mb
+    command: /run.sh --maxmemory 256mb --maxmemory-policy allkeys-lru
     networks:
       - pathfinder
 

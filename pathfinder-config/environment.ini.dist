@@ -102,5 +102,5 @@ SMTP_FROM                   =   registration@pathfinder.thefed.xyz
 SMTP_ERROR                  =   admin@pathfinder.thefed.xyz
 
 ; TCP Socket configuration (optional) (advanced)
-;SOCKET_HOST                 =   127.0.0.1
-;SOCKET_PORT                 =   5555
+SOCKET_HOST                 =   pathfinder-websockets
+SOCKET_PORT                 =   5555
