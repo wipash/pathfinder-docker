@@ -36,8 +36,12 @@ services:
     restart: always
     networks:
       - pathfinder
-    ports:
-      - 8080:80
+    expose:
+      - 80
+    environment:
+      VIRTUAL_HOST: pathfinder.thefed.xyz
+      LETSENCRYPT_HOST: pathfinder.thefed.xyz
+      LETSENCRYPT_EMAIL: pathfinder@dont.ltd
     volumes:
       - pathfinder-data:/var/www/html
       - ./pathfinder-config/nginx-pathfinder.conf:/etc/nginx/conf.d/default.conf:ro
