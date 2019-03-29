@@ -6,4 +6,4 @@ RUN apt-get update &&  apt-get install -y libzmq5 libzmq3-dev git unzip zlib1g-d
 WORKDIR /pathfinder-websockets
 RUN git clone https://github.com/exodus4d/pathfinder_websocket.git . \
 && composer install
-ENTRYPOINT ["php", "cmd.php", "--pf_listen_port", "8030", "--pf_host", "pathfinder-app"]
+ENTRYPOINT ["php", "cmd.php", "--pf_listen_port", "8030", "--pf_host", "*"]
